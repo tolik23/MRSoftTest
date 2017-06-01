@@ -55,18 +55,17 @@ public class MainActivityFragment extends Fragment {
         mButtonSort = (ImageButton) view.findViewById(R.id.btn_sort);
         mEtSearch = (EditText) view.findViewById(R.id.edit_text_search);
 
-        MainActivityPresenterComponent component = App.component(this);
+        final MainActivityPresenterComponent component = App.component(this);
         component.inject(this);
-        component.presenter();
+
+        component.presenter().fillRecyclerView();
+
 
         // сортировка при нажатии кнопки
-        mPresenter = new MainActivityPresenter(getContext(), view);
-        mPresenter.fillRecyclerView();
-
         mButtonSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.sortContacts();
+                component.presenter().sortContacts();
             }
         });
 
@@ -80,10 +79,10 @@ public class MainActivityFragment extends Fragment {
                 // при изменении текста выполняем фильтрацию
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     if (s == null || s.length() == 0) {
-                        mPresenter.fillRecyclerView();
+                        component.presenter().fillRecyclerView();
                     }
                     else {
-                        mPresenter.filterContacts(s);
+                        component.presenter().filterContacts(s);
                     }
                 }
             });

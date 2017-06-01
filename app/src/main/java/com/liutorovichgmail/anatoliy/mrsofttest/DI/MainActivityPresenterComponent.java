@@ -1,6 +1,6 @@
 package com.liutorovichgmail.anatoliy.mrsofttest.DI;
 
-import com.liutorovichgmail.anatoliy.mrsofttest.Presenter.Presenter;
+import com.liutorovichgmail.anatoliy.mrsofttest.Presenter.MainActivityPresenter;
 import com.liutorovichgmail.anatoliy.mrsofttest.View.MainActivityFragment;
 
 import javax.inject.Singleton;
@@ -14,5 +14,5 @@ import dagger.Component;
     )
     public interface MainActivityPresenterComponent {
         void inject(MainActivityFragment mainFragment);
-        Presenter presenter();
+        MainActivityPresenter presenter();
     }
